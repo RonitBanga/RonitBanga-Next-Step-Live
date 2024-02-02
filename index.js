@@ -25,14 +25,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 //*connecting with database
-const conn = database("bwjrecswsp8qx3wy3cg6");
+// const conn = database("bwjrecswsp8qx3wy3cg6");
 // const conn = database("project");
-// const conn = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root', /* MySQL User */
-//   password: '', /* MySQL Password */
-//   database: 'project' /* MySQL Database */
-// });
+const conn = mysql.createConnection({
+  host: 'localhost',
+  user: 'root', /* MySQL User */
+  password: '', /* MySQL Password */
+  database: 'project' /* MySQL Database */
+});
 
 //? ****** Home Route ******
 app.get("/", (req, res) => {
@@ -101,8 +101,8 @@ app.post("/register", (req, res) => {
         conn.query(query, data, (err, result) => {
           if (err) console.log(err);
           else {         //////////project
-            // let q2 = `CREATE TABLE project.\`${username}\` (Id INT(255) NOT NULL AUTO_INCREMENT , Description VARCHAR(255) NOT NULL , Assigned_On VARCHAR(255) NOT NULL , Deadline VARCHAR(255) NOT NULL ,Status BOOLEAN NOT NULL,PRIMARY KEY (Id) )`;
-            let q2 = `CREATE TABLE bwjrecswsp8qx3wy3cg6.\`${username}\` (Id INT(255) NOT NULL AUTO_INCREMENT , Description VARCHAR(255) NOT NULL , Assigned_On VARCHAR(255) NOT NULL , Deadline VARCHAR(255) NOT NULL ,Status BOOLEAN NOT NULL,PRIMARY KEY (Id) )`;
+            let q2 = `CREATE TABLE project.\`${username}\` (Id INT(255) NOT NULL AUTO_INCREMENT , Description VARCHAR(255) NOT NULL , Assigned_On VARCHAR(255) NOT NULL , Deadline VARCHAR(255) NOT NULL ,Status BOOLEAN NOT NULL,PRIMARY KEY (Id) )`;
+            // let q2 = `CREATE TABLE bwjrecswsp8qx3wy3cg6.\`${username}\` (Id INT(255) NOT NULL AUTO_INCREMENT , Description VARCHAR(255) NOT NULL , Assigned_On VARCHAR(255) NOT NULL , Deadline VARCHAR(255) NOT NULL ,Status BOOLEAN NOT NULL,PRIMARY KEY (Id) )`;
 
             conn.query(q2, (err, result) => {
               if (err) throw err;
